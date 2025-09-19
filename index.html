@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envelope Letter</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #2c3e50;
+      font-family: Arial, sans-serif;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 480px;
+      height: 330px;
+      perspective: 1000px;
+      text-align: center;
+    }
+
+    /* Envelope body */
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #34495e;
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    /* Flaps */
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 240px solid transparent;
+      border-right: 240px solid transparent;
+      border-top: 165px solid #2c3e50;
+      z-index: 1;
+    }
+
+    .left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 165px solid transparent;
+      border-bottom: 165px solid transparent;
+      border-right: 240px solid #3b4b5c;
+      z-index: 1;
+    }
+
+    .right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 165px solid transparent;
+      border-bottom: 165px solid transparent;
+      border-left: 240px solid #3b4b5c;
+      z-index: 1;
+    }
+
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 240px solid transparent;
+      border-right: 240px solid transparent;
+      border-bottom: 165px solid #2c3e50;
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 3;
+    }
+
+    /* Front label */
+    .front-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ecf0f1;
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Letter */
+    /* Letter */
+.letter {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 1s ease;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+/* Letter text alignment fix */
+.letter .text {
+  text-align: left;
+  color: #2c3e50; /* optional: makes text easier to read */
+  line-height: 1.5; /* optional: improves readability */
+}
+
+
+    /* Heart button */
+    .heart {
+      position: absolute;
+      bottom: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      background: #e74c3c;
+      clip-path: path("M25 45 L50 20 A12 12 0 0 0 25 5 A12 12 0 0 0 0 20 Z");
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 5;
+    }
+
+    .heart:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* CLICK HERE text */
+    .click-text {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      font-weight: bold;
+      color: #ecf0f1;
+    }
+
+    /* Opened state */
+    .envelope-wrapper.flap .top {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-wrapper.flap .letter {
+      transform: translateY(-15px);
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-wrapper">
+    <div class="envelope">
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="bottom"></div>
+      <div class="top"></div>
+
+      <!-- Letter -->
+      <div class="letter">
+        <div class="text">
+          <strong>Hi Plokie</strong>
+          <p>
+            I'm so proud of you. Always remember that you deserve all of the things you have and what you're about to have. Cherish all of them because these things are what you have been praying for since day 1, and you know your struggles, in each struggle you pushed through shows how resilient you are as a person and can always make it to the top if struggle comes your way.
+          </p>
+          <p>
+            May you find peace in being single because true love comes when you love yourself first, we know how many failed relationships you've been through, but always remember true love comes to those who wait. We also know how many heartbreaks you've been through but remember that feeling those pain is human and feeling that pain is necessary for us to learn "We rip out so much of ourselves to be cured of things faster that we go bankrupt by the age of thirty and have less to offer each time we start with someone new. But to make yourself feel nothing so as not to feel anything — what a waste!".
+          </p>
+          <p>
+            Temptations are everywhere, but always have self-control, always be true to your words, and be mindful of the things you do. Always check your heart and remember what you truly want and what your goal is because there's nothing more painful than you betraying yourself. 
+          </p>
+          <p>
+            Whenever you feel tired, discouraged, or unsure, think of this letter and know that I am rooting for you. You are stronger than you think, braver than you realize, and more loved than you can imagine. Stay healthy and make lots of money because your gonna treat us every now and then (not a request but an order!) We love you mwah mwah mwah!
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Heart with text -->
+    <div class="heart"></div>
+    <div class="click-text">CLICK HERE</div>
+  </div>
+
+  <script>
+    const envelope = document.querySelector(".envelope-wrapper");
+    const heart = document.querySelector(".heart");
+    heart.addEventListener("click", () => {
+      envelope.classList.toggle("flap");
+    });
+  </script>
+</body>
+</html>
