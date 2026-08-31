@@ -211,20 +211,20 @@
     ============================== */
 
     .envelope {
-      position: relative;
+  position: relative;
 
-      width: 100%;
-      height: 100%;
+  width: 100%;
+  height: 100%;
 
-      background: #34495e;
+  background: #34495e;
 
-      border-radius: 6px;
+  border-radius: 6px;
 
-      box-shadow:
-        0 12px 30px rgba(80, 35, 55, 0.35);
+  box-shadow:
+    0 12px 30px rgba(80, 35, 55, 0.35);
 
-      overflow: visible;
-    }
+  overflow: visible;
+}
 
 
     /* ==============================
@@ -342,29 +342,34 @@
     }
 
 
-    /* ==============================
-       LETTER
-    ============================== */
+   /* ==============================
+   LETTER
+============================== */
 
-    .letter {
+.letter {
   position: absolute;
-  bottom: 0;
+
   left: 15px;
+  bottom: 15px;
 
   width: calc(100% - 30px);
   height: calc(100% - 50px);
 
   background: #fff;
+
   border-radius: 6px;
+
   padding: 20px;
+
   box-sizing: border-box;
 
-  /* Hidden below */
-  transform: translateY(100%);
+  /* Letter is hidden INSIDE the envelope */
+  transform: translateY(0);
 
   transition: transform 1s ease;
 
   overflow-y: auto;
+
   z-index: 2;
 
   border: 2px solid #f3d3df;
@@ -512,17 +517,16 @@
     }
 
 
-    /* ==============================
-       OPENED STATE
-    ============================== */
+  /* ==============================
+   OPENED STATE
+============================== */
 
-    .envelope-wrapper.flap .top {
-      transform:
-        rotateX(180deg);
-    }
+.envelope-wrapper.flap .top {
+  transform: rotateX(180deg);
+}
 
-    .envelope-wrapper.flap .letter {
-  transform: translateY(-80%);
+.envelope-wrapper.flap .letter {
+  transform: translateY(-85%);
 }
 
 
