@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Envelope Letter 💌</title>
 
   <style>
@@ -358,9 +358,8 @@
 
       background: #e74c3c;
 
-      clip-path: path(
-        "M25 45 L50 20 A12 12 0 0 0 25 5 A12 12 0 0 0 0 20 Z"
-      );
+      /* Fallback shape: circle if path() isn't supported */
+      border-radius: 50%;
 
       cursor: pointer;
 
@@ -572,7 +571,7 @@
 
     <!-- Heart -->
 
-    <div class="heart"></div>
+    <div class="heart" role="button" tabindex="0" aria-label="Open letter"></div>
 
 
     <!-- Click text -->
@@ -597,10 +596,17 @@
       document.querySelector(".heart");
 
 
-    heart.addEventListener("click", () => {
-
+    // keyboard + click support
+    function toggleFlap() {
       envelope.classList.toggle("flap");
+    }
 
+    heart.addEventListener("click", toggleFlap);
+    heart.addEventListener("keydown", (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFlap();
+      }
     });
 
   </script>
