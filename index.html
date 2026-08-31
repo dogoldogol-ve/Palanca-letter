@@ -2,705 +2,722 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>For CESSS 💌</title>
+<title>For CESSS 💌</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
+* {
+    box-sizing: border-box;
+}
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+body {
+    margin: 0;
+    min-height: 100vh;
 
-      overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      font-family: "Segoe UI", Arial, sans-serif;
+    overflow: hidden;
 
-      background:
-        radial-gradient(circle at 15% 15%, #ffd5e5, transparent 30%),
-        radial-gradient(circle at 85% 85%, #ffc4d9, transparent 30%),
-        linear-gradient(135deg, #fff0f6, #ffdbe8);
-    }
+    font-family: Arial, sans-serif;
 
-    /* =========================
-       FLOATING HEARTS
-       ========================= */
+    background:
+        radial-gradient(circle at 10% 10%, #ffd8e7, transparent 30%),
+        radial-gradient(circle at 90% 90%, #ffc6da, transparent 30%),
+        linear-gradient(135deg, #fff0f6, #ffdce9);
+}
 
-    .floating-heart {
-      position: fixed;
 
-      color: rgba(214, 76, 119, 0.25);
+/* =====================================
+   WRAPPER
+===================================== */
 
-      font-size: 30px;
+.envelope-wrapper {
+    position: relative;
 
-      animation: float 6s ease-in-out infinite;
+    width: min(88vw, 500px);
 
-      pointer-events: none;
-    }
+    height: 420px;
 
-    .heart1 {
-      top: 12%;
-      left: 12%;
-    }
+    display: flex;
 
-    .heart2 {
-      top: 20%;
-      right: 15%;
+    justify-content: center;
+    align-items: center;
 
-      font-size: 20px;
+    perspective: 1200px;
+}
 
-      animation-delay: 2s;
-    }
 
-    .heart3 {
-      bottom: 15%;
-      left: 18%;
+/* =====================================
+   ENVELOPE
+===================================== */
 
-      font-size: 35px;
+.envelope {
+    position: relative;
 
-      animation-delay: 1s;
-    }
+    width: 100%;
+    height: 300px;
 
-    .heart4 {
-      bottom: 20%;
-      right: 12%;
+    border-radius: 10px;
 
-      font-size: 22px;
+    box-shadow:
+        0 20px 45px rgba(100, 35, 60, .25);
 
-      animation-delay: 3s;
-    }
+    /*
+       IMPORTANT:
+       DO NOT use overflow:hidden here.
+       The letter needs to move outside
+       the envelope when opened.
+    */
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(-10deg);
-      }
+    overflow: visible;
+}
 
-      50% {
-        transform: translateY(-25px) rotate(10deg);
-      }
-    }
 
-    /* =========================
-       WRAPPER
-       ========================= */
+/* =====================================
+   LETTER
+===================================== */
 
-    .envelope-wrapper {
-      position: relative;
+.letter {
+    position: absolute;
 
-      width: min(88vw, 500px);
+    left: 5%;
 
-      height: 400px;
+    width: 90%;
 
-      display: flex;
+    height: 270px;
 
-      justify-content: center;
+    bottom: 15px;
 
-      align-items: center;
+    padding: 28px;
 
-      perspective: 1200px;
-    }
+    background: #fffdfd;
 
-    /* =========================
-       ENVELOPE
-       ========================= */
+    border-radius: 10px;
 
-    .envelope {
-      position: relative;
+    box-shadow:
+        0 8px 25px rgba(80, 30, 50, .2);
 
-      width: 100%;
+    color: #633c4d;
 
-      height: 300px;
+    /*
+       LETTER IS BEHIND THE ENVELOPE
+    */
 
-      border-radius: 10px;
+    z-index: 1;
 
-      background: #e67fa0;
+    /*
+       Closed position:
+       letter is mostly inside envelope.
+    */
 
-      box-shadow:
-        0 20px 50px rgba(115, 44, 70, 0.25),
-        0 5px 15px rgba(115, 44, 70, 0.15);
+    transform: translateY(250px);
 
-      /*
-        IMPORTANT:
-        This keeps the letter INSIDE
-        the envelope while closed.
-      */
-      overflow: hidden;
-    }
+    transition:
+        transform 1s cubic-bezier(.68,-0.2,.27,1.2);
 
-    /* =========================
-       LETTER
-       ========================= */
+    overflow-y: auto;
+}
 
-    .letter {
-      position: absolute;
+.letter::-webkit-scrollbar {
+    width: 5px;
+}
 
-      left: 5%;
+.letter::-webkit-scrollbar-thumb {
+    background: #e99ab5;
+    border-radius: 10px;
+}
 
-      width: 90%;
 
-      height: 88%;
+.letter-title {
+    margin: 0;
 
-      bottom: -82%;
+    text-align: center;
 
-      padding: 28px 30px;
+    font-family: Georgia, serif;
 
-      background: #fffdfd;
+    font-size: 28px;
 
-      border-radius: 9px;
+    color: #d95782;
 
-      box-shadow:
-        0 5px 20px rgba(70, 30, 45, 0.18);
+    letter-spacing: 2px;
+}
 
-      color: #633c4d;
 
-      z-index: 2;
+.letter-subtitle {
+    margin: 5px 0 20px;
 
-      overflow-y: auto;
+    text-align: center;
 
-      /*
-        CLOSED:
-        Completely hidden inside envelope.
-      */
-      transform: translateY(0);
+    color: #b87991;
 
-      transition:
-        bottom 1s cubic-bezier(.68,-0.2,.27,1.2);
-    }
+    font-size: 12px;
 
-    .letter::-webkit-scrollbar {
-      width: 5px;
-    }
+    letter-spacing: 1px;
+}
 
-    .letter::-webkit-scrollbar-thumb {
-      background: #e99ab5;
 
-      border-radius: 10px;
-    }
+.text {
+    font-size: 15px;
 
-    .letter-title {
-      margin: 0;
+    line-height: 1.7;
 
-      text-align: center;
+    text-align: left;
+}
 
-      font-family: Georgia, serif;
 
-      font-size: 28px;
+.text p {
+    margin: 0 0 15px;
+}
 
-      color: #d95782;
 
-      letter-spacing: 2px;
-    }
+.signature {
+    margin-top: 20px;
 
-    .letter-subtitle {
-      margin: 5px 0 22px;
+    text-align: right;
 
-      text-align: center;
+    font-family: "Brush Script MT", cursive;
 
-      color: #b87991;
+    font-size: 25px;
 
-      font-size: 12px;
+    color: #d95782;
+}
 
-      letter-spacing: 1.5px;
-    }
 
-    .text {
-      font-size: 15px;
+/* =====================================
+   ENVELOPE BACK
+===================================== */
 
-      line-height: 1.7;
+.envelope-back {
+    position: absolute;
 
-      text-align: left;
-    }
+    inset: 0;
 
-    .text p {
-      margin: 0 0 15px;
-    }
+    background: linear-gradient(
+        145deg,
+        #f3a6bf,
+        #dc7197
+    );
 
-    .signature {
-      margin-top: 25px;
+    border-radius: 10px;
 
-      text-align: right;
+    z-index: 2;
+}
 
-      font-family: "Brush Script MT", cursive;
 
-      font-size: 24px;
+/* =====================================
+   ENVELOPE FRONT POCKET
+===================================== */
 
-      color: #d95782;
-    }
+.envelope-front {
+    position: absolute;
 
-    /* =========================
-       ENVELOPE FRONT
-       ========================= */
+    inset: 0;
 
-    .envelope-front {
-      position: absolute;
+    background: linear-gradient(
+        145deg,
+        #efa0ba,
+        #d96e94
+    );
 
-      inset: 0;
+    border-radius: 10px;
 
-      background:
-        linear-gradient(
-          145deg,
-          #f3a6bf,
-          #df7197
-        );
+    z-index: 5;
 
-      border-radius: 10px;
+    /*
+       The diagonal shape creates
+       the actual envelope pocket.
+    */
 
-      z-index: 4;
-
-      /*
-        This is the front pocket
-        that hides the lower part
-        of the letter.
-      */
-      clip-path: polygon(
+    clip-path: polygon(
         0 0,
+        50% 52%,
         100% 0,
         100% 100%,
         0 100%
-      );
+    );
+}
 
-      pointer-events: none;
-    }
 
-    /* Envelope diagonal folds */
+/* =====================================
+   FRONT DECORATION
+===================================== */
 
-    .envelope-front::before {
-      content: "";
+.envelope-front::before {
+    content: "";
 
-      position: absolute;
+    position: absolute;
 
-      left: -10%;
+    left: -15%;
 
-      bottom: -35%;
+    bottom: -30%;
 
-      width: 75%;
+    width: 70%;
 
-      height: 80%;
+    height: 70%;
 
-      background: rgba(255,255,255,0.10);
+    background: rgba(255,255,255,.08);
 
-      transform: rotate(45deg);
-    }
+    transform: rotate(45deg);
+}
 
-    .envelope-front::after {
-      content: "";
 
-      position: absolute;
+.envelope-front::after {
+    content: "";
 
-      right: -10%;
+    position: absolute;
 
-      bottom: -35%;
+    right: -15%;
 
-      width: 75%;
+    bottom: -30%;
 
-      height: 80%;
+    width: 70%;
 
-      background: rgba(255,255,255,0.10);
+    height: 70%;
 
-      transform: rotate(-45deg);
-    }
+    background: rgba(255,255,255,.08);
 
-    /* =========================
-       FLAP
-       ========================= */
+    transform: rotate(-45deg);
+}
 
-    .top {
-      position: absolute;
 
-      top: 0;
-      left: 0;
+/* =====================================
+   FLAP
+===================================== */
 
-      width: 100%;
-      height: 58%;
+.top {
+    position: absolute;
 
-      background:
-        linear-gradient(
-          145deg,
-          #f7b3ca,
-          #e887a8
-        );
+    top: 0;
+    left: 0;
 
-      clip-path: polygon(
+    width: 100%;
+    height: 58%;
+
+    background: linear-gradient(
+        145deg,
+        #f8b3ca,
+        #e886a7
+    );
+
+    clip-path: polygon(
         0 0,
         100% 0,
         50% 100%
-      );
+    );
 
-      transform-origin: top center;
+    transform-origin: top center;
 
-      transition:
+    z-index: 7;
+
+    transition:
         transform 1s cubic-bezier(.68,-0.55,.27,1.55);
 
-      z-index: 6;
-
-      filter:
+    filter:
         drop-shadow(
-          0 3px 3px rgba(0,0,0,0.08)
+            0 4px 4px rgba(0,0,0,.1)
         );
-    }
+}
 
-    /* =========================
-       FRONT TEXT
-       ========================= */
 
-    .front-text {
-      position: absolute;
+/* =====================================
+   FRONT TEXT
+===================================== */
 
-      top: 62%;
+.front-text {
+    position: absolute;
 
-      left: 50%;
+    top: 65%;
+    left: 50%;
 
-      transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-      width: 100%;
+    width: 100%;
 
-      text-align: center;
+    text-align: center;
 
-      color: white;
+    color: white;
 
-      font-family: Georgia, serif;
+    font-family: Georgia, serif;
 
-      font-size: clamp(20px, 5vw, 28px);
+    font-size: clamp(20px, 5vw, 28px);
 
-      letter-spacing: 2px;
+    letter-spacing: 2px;
 
-      text-shadow:
-        0 2px 5px rgba(90, 30, 50, 0.25);
+    z-index: 8;
 
-      z-index: 5;
+    transition: opacity .4s ease;
+}
 
-      transition:
-        opacity 0.4s ease;
-    }
 
-    .front-small {
-      display: block;
+.front-small {
+    display: block;
 
-      margin-top: 8px;
+    margin-top: 8px;
 
-      font-family: "Segoe UI", sans-serif;
+    font-family: Arial, sans-serif;
 
-      font-size: 12px;
+    font-size: 12px;
 
-      letter-spacing: 2px;
-    }
+    letter-spacing: 2px;
+}
 
-    /* =========================
-       HEART BUTTON
-       ========================= */
 
-    .heart-button {
-      position: absolute;
+/* =====================================
+   HEART
+===================================== */
 
-      left: 50%;
+.heart-button {
+    position: absolute;
 
-      bottom: 5px;
+    left: 50%;
 
-      transform: translateX(-50%);
+    bottom: 5px;
 
-      width: 70px;
-      height: 70px;
+    transform: translateX(-50%);
 
-      border: none;
+    width: 70px;
+    height: 70px;
 
-      background: transparent;
+    border: none;
 
-      cursor: pointer;
+    background: transparent;
 
-      z-index: 20;
+    cursor: pointer;
 
-      transition:
-        transform 0.3s ease;
-    }
+    z-index: 20;
 
-    .heart-button::before {
-      content: "♥";
+    transition: transform .3s ease;
+}
 
-      position: absolute;
 
-      inset: 0;
+.heart-button::before {
+    content: "♥";
 
-      display: flex;
+    position: absolute;
 
-      align-items: center;
+    inset: 0;
 
-      justify-content: center;
+    display: flex;
 
-      color: #e85c88;
+    justify-content: center;
+    align-items: center;
 
-      font-size: 65px;
+    font-size: 65px;
 
-      line-height: 1;
+    color: #e85c88;
 
-      text-shadow:
+    text-shadow:
         0 3px 0 #c94770,
-        0 5px 10px rgba(0,0,0,0.15);
-    }
+        0 5px 10px rgba(0,0,0,.15);
+}
 
-    .heart-button:hover {
-      transform:
+
+.heart-button:hover {
+    transform:
         translateX(-50%)
         scale(1.12);
+}
+
+
+/* =====================================
+   CLICK TEXT
+===================================== */
+
+.click-text {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -25px;
+
+    transform: translateX(-50%);
+
+    color: #984d6a;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    animation: pulse 2s infinite;
+
+    z-index: 20;
+}
+
+
+@keyframes pulse {
+
+    0%, 100% {
+        opacity: .6;
     }
 
-    /* =========================
-       CLICK TEXT
-       ========================= */
-
-    .click-text {
-      position: absolute;
-
-      left: 50%;
-
-      bottom: -28px;
-
-      transform: translateX(-50%);
-
-      color: #9a4d6b;
-
-      font-size: 13px;
-
-      font-weight: bold;
-
-      letter-spacing: 2px;
-
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.6;
-      }
-
-      50% {
+    50% {
         opacity: 1;
-      }
     }
 
-    /* =========================
-       OPEN STATE
-       ========================= */
+}
 
-    .envelope-wrapper.flap .top {
-      transform: rotateX(180deg);
-    }
 
-    /*
-      The letter rises OUT of the envelope
-      only after opening.
-    */
+/* =====================================
+   OPEN ANIMATION
+===================================== */
 
-    .envelope-wrapper.flap .letter {
-      bottom: 12%;
+/*
+   1. Flap opens
+*/
 
-      z-index: 8;
-    }
+.envelope-wrapper.flap .top {
+    transform: rotateX(180deg);
+}
 
-    .envelope-wrapper.flap .front-text {
-      opacity: 0;
-    }
 
-    .envelope-wrapper.flap .click-text {
-      opacity: 0;
-    }
+/*
+   2. Letter comes OUT
+   from behind the envelope.
+*/
 
-    /* =========================
-       MOBILE
-       ========================= */
+.envelope-wrapper.flap .letter {
+    transform: translateY(-190px);
 
-    @media (max-width: 600px) {
+    z-index: 6;
+}
 
-      .envelope-wrapper {
+
+/*
+   3. Front text disappears.
+*/
+
+.envelope-wrapper.flap .front-text {
+    opacity: 0;
+}
+
+
+.envelope-wrapper.flap .click-text {
+    opacity: 0;
+}
+
+
+/*
+   VERY IMPORTANT:
+
+   When the letter comes out,
+   the front pocket needs to stay
+   in front of the lower portion.
+
+   We put the front back above
+   the letter after the animation.
+*/
+
+.envelope-wrapper.flap .envelope-front {
+    z-index: 9;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+    .envelope-wrapper {
         width: 90vw;
 
-        height: 360px;
-      }
+        height: 390px;
+    }
 
-      .envelope {
+
+    .envelope {
         height: 250px;
-      }
+    }
 
-      .letter {
-        padding: 22px 20px;
 
-        height: 90%;
-      }
+    .letter {
+        height: 225px;
 
-      .letter-title {
+        padding: 20px;
+
+        transform:
+            translateY(210px);
+    }
+
+
+    .envelope-wrapper.flap .letter {
+        transform:
+            translateY(-170px);
+    }
+
+
+    .letter-title {
         font-size: 23px;
-      }
+    }
 
-      .text {
+
+    .text {
         font-size: 13px;
 
         line-height: 1.6;
-      }
+    }
 
-      .signature {
+
+    .signature {
         font-size: 21px;
-      }
-
-      .heart-button {
-        bottom: 12px;
-      }
-
-      .click-text {
-        bottom: -18px;
-      }
     }
 
-    @media (max-width: 380px) {
 
-      .letter {
-        padding: 18px 16px;
-      }
-
-      .text {
-        font-size: 12px;
-      }
+    .heart-button {
+        bottom: 15px;
     }
 
-  </style>
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <!-- Decorative hearts -->
 
-  <div class="floating-heart heart1">♡</div>
-  <div class="floating-heart heart2">♥</div>
-  <div class="floating-heart heart3">♡</div>
-  <div class="floating-heart heart4">♥</div>
+<!-- =====================================
+     ENVELOPE
+===================================== -->
 
-
-  <!-- Envelope -->
-
-  <div class="envelope-wrapper" id="envelope">
+<div class="envelope-wrapper" id="envelope">
 
     <div class="envelope">
 
-      <!-- LETTER -->
 
-      <div class="letter">
+        <!-- LETTER -->
 
-        <h1 class="letter-title">
-          CESSS 💗
-        </h1>
+        <div class="letter">
 
-        <div class="letter-subtitle">
-          A little message for you
-        </div>
+            <h1 class="letter-title">
+                CESSS 💗
+            </h1>
 
-        <div class="text">
-
-          <p>
-            <strong>HI TEEHHH,</strong>
-          </p>
-
-          <p>
-            You are literally the definition of loud and funny.
-            My makeup buddy, my abs investigator, my professional
-            boy analyzer.
-          </p>
-
-          <p>
-            I don't think I'd survive school without our chika
-            sessions. Thank you for always hyping me up even when
-            I look like a mess.
-          </p>
-
-          <p>
-            You're not just my friend —
-            you're my emotional support bestie. 🥹💗
-          </p>
-
-          <p>
-            LANTAWA NA <strong>HEATED RIVALRY</strong> TEHH
-            KAY MA KILIG2 TA DUHA HAHAHA 😭
-          </p>
-
-          <p>
-            PATI <strong>JINXXX</strong>
-            HAHAHAHAHAHAA 😭💀
-          </p>
-
-          <p>
-            Anyway, thank you for all the laughs, chikas,
-            random conversations, and memories.
-            Here's to more kalokohan with you! 💕
-          </p>
-
-          <div class="signature">
-            — Your bestie 💌
-          </div>
-
-        </div>
-
-      </div>
+            <div class="letter-subtitle">
+                A little message for you
+            </div>
 
 
-      <!-- Envelope front -->
+            <div class="text">
 
-      <div class="envelope-front">
+                <p>
+                    <strong>HI TEEHHH,</strong>
+                </p>
 
-        <div class="front-text">
+                <p>
+                    You are literally the definition of loud and
+                    funny. My makeup buddy, my abs investigator,
+                    my professional boy analyzer.
+                </p>
 
-          For CESSS 💗
+                <p>
+                    I don't think I'd survive school without our
+                    chika sessions. Thank you for always hyping
+                    me up even when I look like a mess.
+                </p>
 
-          <span class="front-small">
-            Open your letter
-          </span>
+                <p>
+                    You're not just my friend —
+                    you're my emotional support bestie. 🥹💗
+                </p>
+
+                <p>
+                    LANTAWA NA
+                    <strong>HEATED RIVALRY</strong>
+                    TEHH KAY MA KILIG2 TA DUHA HAHAHA 😭
+                </p>
+
+                <p>
+                    PATI <strong>JINXXX</strong>
+                    HAHAHAHAHAHAA 😭💀
+                </p>
+
+                <p>
+                    Anyway, thank you for all the laughs,
+                    chikas, random conversations, and memories.
+                    Here's to more kalokohan with you! 💕
+                </p>
+
+                <div class="signature">
+                    — Your bestie 💌
+                </div>
+
+            </div>
 
         </div>
 
-      </div>
+
+        <!-- ENVELOPE BACK -->
+
+        <div class="envelope-back"></div>
 
 
-      <!-- Envelope flap -->
+        <!-- ENVELOPE FRONT -->
 
-      <div class="top"></div>
+        <div class="envelope-front">
+
+            <div class="front-text">
+
+                For CESSS 💗
+
+                <span class="front-small">
+                    Open your letter
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- FLAP -->
+
+        <div class="top"></div>
+
 
     </div>
 
 
-    <!-- Heart -->
+    <!-- HEART BUTTON -->
 
     <button
-      class="heart-button"
-      id="heartButton"
-      aria-label="Open letter">
+        class="heart-button"
+        id="heartButton"
+        aria-label="Open letter">
     </button>
 
+
     <div class="click-text">
-      CLICK HERE 💌
+        CLICK HERE 💌
     </div>
 
-  </div>
+
+</div>
 
 
-  <script>
+<script>
 
-    const envelope =
-      document.getElementById("envelope");
+const envelope =
+    document.getElementById("envelope");
 
-    const heartButton =
-      document.getElementById("heartButton");
+const heartButton =
+    document.getElementById("heartButton");
 
-    heartButton.addEventListener("click", () => {
 
-      envelope.classList.toggle("flap");
+heartButton.addEventListener("click", () => {
 
-    });
+    envelope.classList.toggle("flap");
 
-  </script>
+});
+
+</script>
+
 
 </body>
 </html>
