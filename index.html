@@ -1,722 +1,612 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envelope Letter 💌</title>
 
-<title>For CESSS 💌</title>
+  <style>
 
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-
-    font-family: Arial, sans-serif;
-
-    background:
-        radial-gradient(circle at 10% 10%, #ffd8e7, transparent 30%),
-        radial-gradient(circle at 90% 90%, #ffc6da, transparent 30%),
-        linear-gradient(135deg, #fff0f6, #ffdce9);
-}
-
-
-/* =====================================
-   WRAPPER
-===================================== */
-
-.envelope-wrapper {
-    position: relative;
-
-    width: min(88vw, 500px);
-
-    height: 420px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    perspective: 1200px;
-}
-
-
-/* =====================================
-   ENVELOPE
-===================================== */
-
-.envelope {
-    position: relative;
-
-    width: 100%;
-    height: 300px;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 20px 45px rgba(100, 35, 60, .25);
-
-    /*
-       IMPORTANT:
-       DO NOT use overflow:hidden here.
-       The letter needs to move outside
-       the envelope when opened.
-    */
-
-    overflow: visible;
-}
-
-
-/* =====================================
-   LETTER
-===================================== */
-
-.letter {
-    position: absolute;
-
-    left: 5%;
-
-    width: 90%;
-
-    height: 270px;
-
-    bottom: 15px;
-
-    padding: 28px;
-
-    background: #fffdfd;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 8px 25px rgba(80, 30, 50, .2);
-
-    color: #633c4d;
-
-    /*
-       LETTER IS BEHIND THE ENVELOPE
-    */
-
-    z-index: 1;
-
-    /*
-       Closed position:
-       letter is mostly inside envelope.
-    */
-
-    transform: translateY(250px);
-
-    transition:
-        transform 1s cubic-bezier(.68,-0.2,.27,1.2);
-
-    overflow-y: auto;
-}
-
-.letter::-webkit-scrollbar {
-    width: 5px;
-}
-
-.letter::-webkit-scrollbar-thumb {
-    background: #e99ab5;
-    border-radius: 10px;
-}
-
-
-.letter-title {
-    margin: 0;
-
-    text-align: center;
-
-    font-family: Georgia, serif;
-
-    font-size: 28px;
-
-    color: #d95782;
-
-    letter-spacing: 2px;
-}
-
-
-.letter-subtitle {
-    margin: 5px 0 20px;
-
-    text-align: center;
-
-    color: #b87991;
-
-    font-size: 12px;
-
-    letter-spacing: 1px;
-}
-
-
-.text {
-    font-size: 15px;
-
-    line-height: 1.7;
-
-    text-align: left;
-}
-
-
-.text p {
-    margin: 0 0 15px;
-}
-
-
-.signature {
-    margin-top: 20px;
-
-    text-align: right;
-
-    font-family: "Brush Script MT", cursive;
-
-    font-size: 25px;
-
-    color: #d95782;
-}
-
-
-/* =====================================
-   ENVELOPE BACK
-===================================== */
-
-.envelope-back {
-    position: absolute;
-
-    inset: 0;
-
-    background: linear-gradient(
-        145deg,
-        #f3a6bf,
-        #dc7197
-    );
-
-    border-radius: 10px;
-
-    z-index: 2;
-}
-
-
-/* =====================================
-   ENVELOPE FRONT POCKET
-===================================== */
-
-.envelope-front {
-    position: absolute;
-
-    inset: 0;
-
-    background: linear-gradient(
-        145deg,
-        #efa0ba,
-        #d96e94
-    );
-
-    border-radius: 10px;
-
-    z-index: 5;
-
-    /*
-       The diagonal shape creates
-       the actual envelope pocket.
-    */
-
-    clip-path: polygon(
-        0 0,
-        50% 52%,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
-}
-
-
-/* =====================================
-   FRONT DECORATION
-===================================== */
-
-.envelope-front::before {
-    content: "";
-
-    position: absolute;
-
-    left: -15%;
-
-    bottom: -30%;
-
-    width: 70%;
-
-    height: 70%;
-
-    background: rgba(255,255,255,.08);
-
-    transform: rotate(45deg);
-}
-
-
-.envelope-front::after {
-    content: "";
-
-    position: absolute;
-
-    right: -15%;
-
-    bottom: -30%;
-
-    width: 70%;
-
-    height: 70%;
-
-    background: rgba(255,255,255,.08);
-
-    transform: rotate(-45deg);
-}
-
-
-/* =====================================
-   FLAP
-===================================== */
-
-.top {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 58%;
-
-    background: linear-gradient(
-        145deg,
-        #f8b3ca,
-        #e886a7
-    );
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        50% 100%
-    );
-
-    transform-origin: top center;
-
-    z-index: 7;
-
-    transition:
-        transform 1s cubic-bezier(.68,-0.55,.27,1.55);
-
-    filter:
-        drop-shadow(
-            0 4px 4px rgba(0,0,0,.1)
-        );
-}
-
-
-/* =====================================
-   FRONT TEXT
-===================================== */
-
-.front-text {
-    position: absolute;
-
-    top: 65%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    width: 100%;
-
-    text-align: center;
-
-    color: white;
-
-    font-family: Georgia, serif;
-
-    font-size: clamp(20px, 5vw, 28px);
-
-    letter-spacing: 2px;
-
-    z-index: 8;
-
-    transition: opacity .4s ease;
-}
-
-
-.front-small {
-    display: block;
-
-    margin-top: 8px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-
-/* =====================================
-   HEART
-===================================== */
-
-.heart-button {
-    position: absolute;
-
-    left: 50%;
-
-    bottom: 5px;
-
-    transform: translateX(-50%);
-
-    width: 70px;
-    height: 70px;
-
-    border: none;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    z-index: 20;
-
-    transition: transform .3s ease;
-}
-
-
-.heart-button::before {
-    content: "♥";
-
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    font-size: 65px;
-
-    color: #e85c88;
-
-    text-shadow:
-        0 3px 0 #c94770,
-        0 5px 10px rgba(0,0,0,.15);
-}
-
-
-.heart-button:hover {
-    transform:
-        translateX(-50%)
-        scale(1.12);
-}
-
-
-/* =====================================
-   CLICK TEXT
-===================================== */
-
-.click-text {
-    position: absolute;
-
-    left: 50%;
-
-    bottom: -25px;
-
-    transform: translateX(-50%);
-
-    color: #984d6a;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    animation: pulse 2s infinite;
-
-    z-index: 20;
-}
-
-
-@keyframes pulse {
-
-    0%, 100% {
-        opacity: .6;
+    * {
+      box-sizing: border-box;
     }
 
-    50% {
+    body {
+      margin: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      min-height: 100vh;
+
+      overflow: hidden;
+
+      font-family: Arial, sans-serif;
+
+      /* Soft romantic background */
+      background:
+        radial-gradient(circle at 10% 20%, #ffd6e7 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, #ffc8dc 0%, transparent 25%),
+        linear-gradient(135deg, #fff0f6, #ffd9e8);
+
+      position: relative;
+    }
+
+
+    /* =================================
+       BACKGROUND FLOWERS
+    ================================= */
+
+    .flower {
+      position: fixed;
+
+      font-size: 55px;
+
+      opacity: 0.65;
+
+      pointer-events: none;
+
+      animation: flowerFloat 5s ease-in-out infinite;
+    }
+
+    .flower1 {
+      top: 7%;
+      left: 7%;
+
+      animation-delay: 0s;
+    }
+
+    .flower2 {
+      top: 10%;
+      right: 8%;
+
+      font-size: 45px;
+
+      animation-delay: 1s;
+    }
+
+    .flower3 {
+      bottom: 7%;
+      left: 8%;
+
+      font-size: 50px;
+
+      animation-delay: 2s;
+    }
+
+    .flower4 {
+      bottom: 10%;
+      right: 7%;
+
+      font-size: 60px;
+
+      animation-delay: 1.5s;
+    }
+
+
+    @keyframes flowerFloat {
+
+      0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(5deg);
+      }
+
+    }
+
+
+    /* =================================
+       FLOATING HEARTS
+    ================================= */
+
+    .floating-heart {
+      position: fixed;
+
+      color: #e77a9e;
+
+      font-size: 25px;
+
+      opacity: 0.45;
+
+      pointer-events: none;
+
+      animation: heartFloat 6s ease-in-out infinite;
+    }
+
+
+    .heart1 {
+      left: 20%;
+      top: 12%;
+    }
+
+    .heart2 {
+      right: 23%;
+      top: 18%;
+
+      font-size: 18px;
+
+      animation-delay: 1s;
+    }
+
+    .heart3 {
+      left: 17%;
+      bottom: 20%;
+
+      font-size: 20px;
+
+      animation-delay: 2s;
+    }
+
+    .heart4 {
+      right: 18%;
+      bottom: 15%;
+
+      font-size: 28px;
+
+      animation-delay: 3s;
+    }
+
+
+    @keyframes heartFloat {
+
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.15);
+      }
+
+    }
+
+
+    /* =================================
+       SPARKLES
+    ================================= */
+
+    .sparkle {
+      position: fixed;
+
+      color: white;
+
+      font-size: 22px;
+
+      opacity: 0.7;
+
+      pointer-events: none;
+
+      animation: sparkle 3s ease-in-out infinite;
+    }
+
+
+    .sparkle1 {
+      top: 25%;
+      left: 5%;
+    }
+
+    .sparkle2 {
+      top: 30%;
+      right: 6%;
+
+      animation-delay: 1s;
+    }
+
+    .sparkle3 {
+      bottom: 28%;
+      left: 6%;
+
+      animation-delay: 2s;
+    }
+
+    .sparkle4 {
+      bottom: 25%;
+      right: 5%;
+
+      animation-delay: 1.5s;
+    }
+
+
+    @keyframes sparkle {
+
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+      }
+
+      50% {
         opacity: 1;
+        transform: scale(1.3);
+      }
+
     }
 
-}
 
-
-/* =====================================
-   OPEN ANIMATION
-===================================== */
-
-/*
-   1. Flap opens
-*/
-
-.envelope-wrapper.flap .top {
-    transform: rotateX(180deg);
-}
-
-
-/*
-   2. Letter comes OUT
-   from behind the envelope.
-*/
-
-.envelope-wrapper.flap .letter {
-    transform: translateY(-190px);
-
-    z-index: 6;
-}
-
-
-/*
-   3. Front text disappears.
-*/
-
-.envelope-wrapper.flap .front-text {
-    opacity: 0;
-}
-
-
-.envelope-wrapper.flap .click-text {
-    opacity: 0;
-}
-
-
-/*
-   VERY IMPORTANT:
-
-   When the letter comes out,
-   the front pocket needs to stay
-   in front of the lower portion.
-
-   We put the front back above
-   the letter after the animation.
-*/
-
-.envelope-wrapper.flap .envelope-front {
-    z-index: 9;
-}
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media (max-width: 600px) {
+    /* =================================
+       ENVELOPE WRAPPER
+    ================================= */
 
     .envelope-wrapper {
-        width: 90vw;
+      position: relative;
 
-        height: 390px;
+      width: 90vw;
+      max-width: 480px;
+
+      aspect-ratio: 480/330;
+
+      perspective: 1000px;
+
+      text-align: center;
+
+      z-index: 10;
     }
 
+
+    /* =================================
+       ENVELOPE BODY
+    ================================= */
 
     .envelope {
-        height: 250px;
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      background: #34495e;
+
+      border-radius: 6px;
+
+      box-shadow:
+        0 12px 30px rgba(80, 35, 55, 0.35);
+
+      overflow: hidden;
     }
 
 
+    /* =================================
+       FRONT LABEL
+    ================================= */
+
+    .front-text {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      color: #ecf0f1;
+
+      font-size: 20px;
+
+      font-weight: bold;
+
+      z-index: 2;
+
+      pointer-events: none;
+    }
+
+
+    /* =================================
+       LETTER
+    ================================= */
+
     .letter {
-        height: 225px;
+      position: absolute;
 
-        padding: 20px;
+      bottom: 0;
+      left: 15px;
 
-        transform:
-            translateY(210px);
+      width: calc(100% - 30px);
+
+      height: calc(100% - 30px);
+
+      background: #fff;
+
+      border-radius: 6px;
+
+      padding: 20px;
+
+      box-sizing: border-box;
+
+      transform: translateY(100%);
+
+      transition: transform 1s ease;
+
+      overflow-y: auto;
+
+      z-index: 2;
+
+      /* Small decorative border */
+      border: 2px solid #f3d3df;
+
+      box-shadow:
+        inset 0 0 20px rgba(235, 150, 180, 0.08);
+    }
+
+
+    /* Letter text */
+
+    .letter .text {
+
+      text-align: left;
+
+      color: #2c3e50;
+
+      line-height: 1.5;
+    }
+
+
+    /* =================================
+       HEART BUTTON
+    ================================= */
+
+    .heart {
+
+      position: absolute;
+
+      bottom: -70px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 50px;
+      height: 50px;
+
+      background: #e74c3c;
+
+      clip-path: path(
+        "M25 45 L50 20 A12 12 0 0 0 25 5 A12 12 0 0 0 0 20 Z"
+      );
+
+      cursor: pointer;
+
+      transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+
+      z-index: 5;
+
+      filter:
+        drop-shadow(
+          0 5px 7px rgba(100, 30, 50, 0.3)
+        );
+    }
+
+
+    .heart:hover {
+
+      transform:
+        translateX(-50%)
+        scale(1.1);
+
+      filter:
+        drop-shadow(
+          0 6px 10px rgba(100, 30, 50, 0.4)
+        );
+    }
+
+
+    /* =================================
+       CLICK HERE
+    ================================= */
+
+    .click-text {
+
+      position: absolute;
+
+      bottom: -100px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      color: #7d4058;
+
+      letter-spacing: 2px;
+
+      animation: clickPulse 2s infinite;
+
+      white-space: nowrap;
+    }
+
+
+    @keyframes clickPulse {
+
+      0%, 100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* =================================
+       OPENED STATE
+    ================================= */
+
+    .envelope-wrapper.flap .top {
+
+      transform: rotateX(180deg);
+
     }
 
 
     .envelope-wrapper.flap .letter {
-        transform:
-            translateY(-170px);
+
+      transform: translateY(-15px);
+
     }
 
 
-    .letter-title {
-        font-size: 23px;
+    /* =================================
+       SMALL SCREEN
+    ================================= */
+
+    @media (max-width: 600px) {
+
+      .flower {
+        font-size: 40px;
+      }
+
+      .heart1,
+      .heart2 {
+        top: 8%;
+      }
+
+      .heart3,
+      .heart4 {
+        bottom: 10%;
+      }
+
+      .sparkle {
+        font-size: 17px;
+      }
+
+      .front-text {
+        font-size: 17px;
+      }
+
     }
 
-
-    .text {
-        font-size: 13px;
-
-        line-height: 1.6;
-    }
-
-
-    .signature {
-        font-size: 21px;
-    }
-
-
-    .heart-button {
-        bottom: 15px;
-    }
-
-}
-
-</style>
+  </style>
 </head>
 
 
 <body>
 
 
-<!-- =====================================
-     ENVELOPE
-===================================== -->
+  <!-- ===============================
+       DECORATIVE FLOWERS
+  ================================ -->
 
-<div class="envelope-wrapper" id="envelope">
+  <div class="flower flower1">🌸</div>
+  <div class="flower flower2">🌷</div>
+  <div class="flower flower3">🌼</div>
+  <div class="flower flower4">🌺</div>
+
+
+  <!-- ===============================
+       FLOATING HEARTS
+  ================================ -->
+
+  <div class="floating-heart heart1">♥</div>
+  <div class="floating-heart heart2">♡</div>
+  <div class="floating-heart heart3">♥</div>
+  <div class="floating-heart heart4">♡</div>
+
+
+  <!-- ===============================
+       SPARKLES
+  ================================ -->
+
+  <div class="sparkle sparkle1">✦</div>
+  <div class="sparkle sparkle2">✧</div>
+  <div class="sparkle sparkle3">✦</div>
+  <div class="sparkle sparkle4">✧</div>
+
+
+  <!-- ===============================
+       ORIGINAL ENVELOPE
+  ================================ -->
+
+  <div class="envelope-wrapper">
 
     <div class="envelope">
 
+      <div class="left"></div>
 
-        <!-- LETTER -->
+      <div class="right"></div>
 
-        <div class="letter">
+      <div class="bottom"></div>
 
-            <h1 class="letter-title">
-                CESSS 💗
-            </h1>
-
-            <div class="letter-subtitle">
-                A little message for you
-            </div>
+      <div class="top"></div>
 
 
-            <div class="text">
+      <!-- Letter -->
 
-                <p>
-                    <strong>HI TEEHHH,</strong>
-                </p>
+      <div class="letter">
 
-                <p>
-                    You are literally the definition of loud and
-                    funny. My makeup buddy, my abs investigator,
-                    my professional boy analyzer.
-                </p>
+        <div class="text">
 
-                <p>
-                    I don't think I'd survive school without our
-                    chika sessions. Thank you for always hyping
-                    me up even when I look like a mess.
-                </p>
+          <strong>CESSS 💗</strong>
 
-                <p>
-                    You're not just my friend —
-                    you're my emotional support bestie. 🥹💗
-                </p>
+          <p>
+            HI TEEHHH,
+          </p>
 
-                <p>
-                    LANTAWA NA
-                    <strong>HEATED RIVALRY</strong>
-                    TEHH KAY MA KILIG2 TA DUHA HAHAHA 😭
-                </p>
+          <p>
+            You are literally the definition of loud and funny.
+            My makeup buddy, my abs investigator, my professional
+            boy analyzer. I don’t think I’d survive school without
+            our chika sessions.
+          </p>
 
-                <p>
-                    PATI <strong>JINXXX</strong>
-                    HAHAHAHAHAHAA 😭💀
-                </p>
+          <p>
+            Thank you for always hyping me up even when I look
+            like a mess. You’re not just my friend — you’re my
+            emotional support bestie. 💕
+          </p>
 
-                <p>
-                    Anyway, thank you for all the laughs,
-                    chikas, random conversations, and memories.
-                    Here's to more kalokohan with you! 💕
-                </p>
-
-                <div class="signature">
-                    — Your bestie 💌
-                </div>
-
-            </div>
+          <p>
+            LANTAWA NA HEATED RIVALRY TEHH KAY MA KILIG2 TA
+            DUHA HAHAHA, PATI JINXXX HAHAHAAH 😭💗
+          </p>
 
         </div>
 
-
-        <!-- ENVELOPE BACK -->
-
-        <div class="envelope-back"></div>
-
-
-        <!-- ENVELOPE FRONT -->
-
-        <div class="envelope-front">
-
-            <div class="front-text">
-
-                For CESSS 💗
-
-                <span class="front-small">
-                    Open your letter
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- FLAP -->
-
-        <div class="top"></div>
-
+      </div>
 
     </div>
 
 
-    <!-- HEART BUTTON -->
+    <!-- Heart -->
 
-    <button
-        class="heart-button"
-        id="heartButton"
-        aria-label="Open letter">
-    </button>
+    <div class="heart"></div>
 
+
+    <!-- Click text -->
 
     <div class="click-text">
-        CLICK HERE 💌
+      CLICK HERE 💌
     </div>
 
-
-</div>
-
-
-<script>
-
-const envelope =
-    document.getElementById("envelope");
-
-const heartButton =
-    document.getElementById("heartButton");
+  </div>
 
 
-heartButton.addEventListener("click", () => {
+  <!-- ===============================
+       JAVASCRIPT
+  ================================ -->
 
-    envelope.classList.toggle("flap");
+  <script>
 
-});
+    const envelope =
+      document.querySelector(".envelope-wrapper");
 
-</script>
+    const heart =
+      document.querySelector(".heart");
+
+
+    heart.addEventListener("click", () => {
+
+      envelope.classList.toggle("flap");
+
+    });
+
+  </script>
 
 
 </body>
 </html>
+```
