@@ -1,92 +1,74 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Envelope Letter 💌</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envelope Letter</title>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       min-height: 100vh;
-
       overflow: hidden;
 
-      font-family: Arial, sans-serif;
-
-      /* Soft romantic background */
       background:
         radial-gradient(circle at 10% 20%, #ffd6e7 0%, transparent 25%),
         radial-gradient(circle at 90% 80%, #ffc8dc 0%, transparent 25%),
         linear-gradient(135deg, #fff0f6, #ffd9e8);
 
+      font-family: Arial, sans-serif;
       position: relative;
     }
 
 
-    /* =================================
-       BACKGROUND FLOWERS
-    ================================= */
+    /* ==============================
+       DECORATIVE FLOWERS
+    ============================== */
 
     .flower {
       position: fixed;
-
-      font-size: 55px;
-
-      opacity: 0.65;
-
       pointer-events: none;
-
+      z-index: 1;
+      opacity: 0.65;
       animation: flowerFloat 5s ease-in-out infinite;
     }
 
     .flower1 {
       top: 7%;
       left: 7%;
-
-      animation-delay: 0s;
+      font-size: 55px;
     }
 
     .flower2 {
       top: 10%;
       right: 8%;
-
       font-size: 45px;
-
       animation-delay: 1s;
     }
 
     .flower3 {
       bottom: 7%;
       left: 8%;
-
       font-size: 50px;
-
       animation-delay: 2s;
     }
 
     .flower4 {
       bottom: 10%;
       right: 7%;
-
       font-size: 60px;
-
       animation-delay: 1.5s;
     }
 
-
     @keyframes flowerFloat {
-
       0%, 100% {
         transform: translateY(0) rotate(-5deg);
       }
@@ -94,64 +76,52 @@
       50% {
         transform: translateY(-12px) rotate(5deg);
       }
-
     }
 
 
-    /* =================================
+    /* ==============================
        FLOATING HEARTS
-    ================================= */
+    ============================== */
 
     .floating-heart {
       position: fixed;
+      pointer-events: none;
+      z-index: 1;
 
       color: #e77a9e;
-
-      font-size: 25px;
-
       opacity: 0.45;
-
-      pointer-events: none;
 
       animation: heartFloat 6s ease-in-out infinite;
     }
 
-
     .heart1 {
       left: 20%;
       top: 12%;
+      font-size: 25px;
     }
 
     .heart2 {
       right: 23%;
       top: 18%;
-
       font-size: 18px;
-
       animation-delay: 1s;
     }
 
     .heart3 {
       left: 17%;
       bottom: 20%;
-
       font-size: 20px;
-
       animation-delay: 2s;
     }
 
     .heart4 {
       right: 18%;
       bottom: 15%;
-
       font-size: 28px;
-
       animation-delay: 3s;
     }
 
-
     @keyframes heartFloat {
-
       0%, 100% {
         transform: translateY(0) scale(1);
       }
@@ -159,58 +129,52 @@
       50% {
         transform: translateY(-20px) scale(1.15);
       }
-
     }
 
 
-    /* =================================
+    /* ==============================
        SPARKLES
-    ================================= */
+    ============================== */
 
     .sparkle {
       position: fixed;
+      pointer-events: none;
+      z-index: 1;
 
       color: white;
-
-      font-size: 22px;
-
       opacity: 0.7;
-
-      pointer-events: none;
 
       animation: sparkle 3s ease-in-out infinite;
     }
 
-
     .sparkle1 {
       top: 25%;
       left: 5%;
+      font-size: 22px;
     }
 
     .sparkle2 {
       top: 30%;
       right: 6%;
-
+      font-size: 18px;
       animation-delay: 1s;
     }
 
     .sparkle3 {
       bottom: 28%;
       left: 6%;
-
+      font-size: 20px;
       animation-delay: 2s;
     }
 
     .sparkle4 {
       bottom: 25%;
       right: 5%;
-
+      font-size: 22px;
       animation-delay: 1.5s;
     }
 
-
     @keyframes sparkle {
-
       0%, 100% {
         opacity: 0.3;
         transform: scale(0.8);
@@ -220,13 +184,12 @@
         opacity: 1;
         transform: scale(1.3);
       }
-
     }
 
 
-    /* =================================
+    /* ==============================
        ENVELOPE WRAPPER
-    ================================= */
+    ============================== */
 
     .envelope-wrapper {
       position: relative;
@@ -234,7 +197,7 @@
       width: 90vw;
       max-width: 480px;
 
-      aspect-ratio: 480/330;
+      aspect-ratio: 480 / 330;
 
       perspective: 1000px;
 
@@ -244,9 +207,9 @@
     }
 
 
-    /* =================================
+    /* ==============================
        ENVELOPE BODY
-    ================================= */
+    ============================== */
 
     .envelope {
       position: relative;
@@ -265,9 +228,95 @@
     }
 
 
-    /* =================================
+    /* ==============================
+       ENVELOPE FLAPS
+    ============================== */
+
+    .left {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      width: 50%;
+      height: 100%;
+
+      background: #3d5368;
+
+      clip-path: polygon(
+        0 0,
+        100% 50%,
+        0 100%
+      );
+
+      z-index: 3;
+    }
+
+    .right {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      width: 50%;
+      height: 100%;
+
+      background: #3d5368;
+
+      clip-path: polygon(
+        100% 0,
+        0 50%,
+        100% 100%
+      );
+
+      z-index: 3;
+    }
+
+    .bottom {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 60%;
+
+      background: #40586d;
+
+      clip-path: polygon(
+        0 100%,
+        50% 0,
+        100% 100%
+      );
+
+      z-index: 4;
+    }
+
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 60%;
+
+      background: #4b6479;
+
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+      );
+
+      transform-origin: top center;
+
+      transition:
+        transform 1s ease;
+
+      z-index: 6;
+    }
+
+
+    /* ==============================
        FRONT LABEL
-    ================================= */
+    ============================== */
 
     .front-text {
       position: absolute;
@@ -275,23 +324,28 @@
       top: 50%;
       left: 50%;
 
-      transform: translate(-50%, -50%);
+      transform:
+        translate(-50%, -50%);
+
+      width: 100%;
 
       color: #ecf0f1;
 
       font-size: 20px;
-
       font-weight: bold;
 
-      z-index: 2;
+      z-index: 7;
 
       pointer-events: none;
+
+      text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.25);
     }
 
 
-    /* =================================
+    /* ==============================
        LETTER
-    ================================= */
+    ============================== */
 
     .letter {
       position: absolute;
@@ -313,13 +367,13 @@
 
       transform: translateY(100%);
 
-      transition: transform 1s ease;
+      transition:
+        transform 1s ease;
 
       overflow-y: auto;
 
       z-index: 2;
 
-      /* Small decorative border */
       border: 2px solid #f3d3df;
 
       box-shadow:
@@ -327,10 +381,23 @@
     }
 
 
-    /* Letter text */
+    /* Letter scrollbar */
+
+    .letter::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .letter::-webkit-scrollbar-thumb {
+      background: #e99ab5;
+      border-radius: 10px;
+    }
+
+
+    /* ==============================
+       LETTER TEXT
+    ============================== */
 
     .letter .text {
-
       text-align: left;
 
       color: #2c3e50;
@@ -338,28 +405,43 @@
       line-height: 1.5;
     }
 
+    .letter .text strong:first-child {
+      color: #e06b91;
 
-    /* =================================
+      font-family: Georgia, serif;
+
+      font-size: 25px;
+
+      letter-spacing: 2px;
+    }
+
+    .letter p {
+      margin-bottom: 15px;
+    }
+
+
+    /* ==============================
        HEART BUTTON
-    ================================= */
+    ============================== */
 
     .heart {
-
       position: absolute;
 
       bottom: -70px;
 
       left: 50%;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       width: 50px;
       height: 50px;
 
       background: #e74c3c;
 
-      /* Fallback shape: circle if path() isn't supported */
-      border-radius: 50%;
+      clip-path: path(
+        "M25 45 L50 20 A12 12 0 0 0 25 5 A12 12 0 0 0 0 20 Z"
+      );
 
       cursor: pointer;
 
@@ -367,7 +449,7 @@
         transform 0.3s ease,
         filter 0.3s ease;
 
-      z-index: 5;
+      z-index: 10;
 
       filter:
         drop-shadow(
@@ -377,31 +459,30 @@
 
 
     .heart:hover {
-
       transform:
         translateX(-50%)
         scale(1.1);
 
       filter:
         drop-shadow(
-          0 6px 10px rgba(100, 30, 50, 0.4)
+          0 7px 12px rgba(100, 30, 50, 0.4)
         );
     }
 
 
-    /* =================================
-       CLICK HERE
-    ================================= */
+    /* ==============================
+       CLICK HERE TEXT
+    ============================== */
 
     .click-text {
-
       position: absolute;
 
       bottom: -100px;
 
       left: 50%;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       font-size: 16px;
 
@@ -411,9 +492,12 @@
 
       letter-spacing: 2px;
 
-      animation: clickPulse 2s infinite;
-
       white-space: nowrap;
+
+      animation:
+        clickPulse 2s infinite;
+
+      z-index: 10;
     }
 
 
@@ -430,27 +514,24 @@
     }
 
 
-    /* =================================
+    /* ==============================
        OPENED STATE
-    ================================= */
+    ============================== */
 
     .envelope-wrapper.flap .top {
-
-      transform: rotateX(180deg);
-
+      transform:
+        rotateX(180deg);
     }
-
 
     .envelope-wrapper.flap .letter {
-
-      transform: translateY(-15px);
-
+      transform:
+        translateY(-15px);
     }
 
 
-    /* =================================
-       SMALL SCREEN
-    ================================= */
+    /* ==============================
+       MOBILE
+    ============================== */
 
     @media (max-width: 600px) {
 
@@ -458,22 +539,48 @@
         font-size: 40px;
       }
 
-      .heart1,
-      .heart2 {
+      .flower1 {
         top: 8%;
+        left: 5%;
       }
 
-      .heart3,
-      .heart4 {
-        bottom: 10%;
+      .flower2 {
+        top: 8%;
+        right: 5%;
+      }
+
+      .flower3 {
+        bottom: 8%;
+        left: 5%;
+      }
+
+      .flower4 {
+        bottom: 8%;
+        right: 5%;
+      }
+
+      .floating-heart {
+        font-size: 18px;
       }
 
       .sparkle {
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .front-text {
         font-size: 17px;
+      }
+
+      .letter {
+        padding: 16px;
+      }
+
+      .letter .text {
+        font-size: 13px;
+      }
+
+      .letter .text strong:first-child {
+        font-size: 21px;
       }
 
     }
@@ -485,9 +592,7 @@
 <body>
 
 
-  <!-- ===============================
-       DECORATIVE FLOWERS
-  ================================ -->
+  <!-- Decorative Flowers -->
 
   <div class="flower flower1">🌸</div>
   <div class="flower flower2">🌷</div>
@@ -495,9 +600,7 @@
   <div class="flower flower4">🌺</div>
 
 
-  <!-- ===============================
-       FLOATING HEARTS
-  ================================ -->
+  <!-- Floating Hearts -->
 
   <div class="floating-heart heart1">♥</div>
   <div class="floating-heart heart2">♡</div>
@@ -505,9 +608,7 @@
   <div class="floating-heart heart4">♡</div>
 
 
-  <!-- ===============================
-       SPARKLES
-  ================================ -->
+  <!-- Sparkles -->
 
   <div class="sparkle sparkle1">✦</div>
   <div class="sparkle sparkle2">✧</div>
@@ -515,9 +616,7 @@
   <div class="sparkle sparkle4">✧</div>
 
 
-  <!-- ===============================
-       ORIGINAL ENVELOPE
-  ================================ -->
+  <!-- Envelope -->
 
   <div class="envelope-wrapper">
 
@@ -530,6 +629,13 @@
       <div class="bottom"></div>
 
       <div class="top"></div>
+
+
+      <!-- Front Text -->
+
+      <div class="front-text">
+        💌 FOR CESSS 💌
+      </div>
 
 
       <!-- Letter -->
@@ -553,8 +659,8 @@
 
           <p>
             Thank you for always hyping me up even when I look
-            like a mess. You’re not just my friend — you’re my
-            emotional support bestie. 💕
+            like a mess. You’re not just my friend —
+            you’re my emotional support bestie. 💕
           </p>
 
           <p>
@@ -569,23 +675,18 @@
     </div>
 
 
-    <!-- Heart -->
+    <!-- Heart Button -->
 
-    <div class="heart" role="button" tabindex="0" aria-label="Open letter"></div>
-
-
-    <!-- Click text -->
+    <div class="heart"></div>
 
     <div class="click-text">
-      CLICK HERE 💌
+      CLICK HERE 💕
     </div>
 
   </div>
 
 
-  <!-- ===============================
-       JAVASCRIPT
-  ================================ -->
+  <!-- JavaScript -->
 
   <script>
 
@@ -595,22 +696,14 @@
     const heart =
       document.querySelector(".heart");
 
+    heart.addEventListener("click", () => {
 
-    // keyboard + click support
-    function toggleFlap() {
       envelope.classList.toggle("flap");
-    }
 
-    heart.addEventListener("click", toggleFlap);
-    heart.addEventListener("keydown", (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleFlap();
-      }
     });
 
   </script>
 
-
 </body>
 </html>
+```
