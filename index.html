@@ -350,35 +350,31 @@
   position: absolute;
 
   left: 15px;
-  bottom: 15px;
+  bottom: 20px;
 
   width: calc(100% - 30px);
   height: calc(100% - 50px);
 
   background: #fff;
-
   border-radius: 6px;
-
   padding: 20px;
 
-  box-sizing: border-box;
-
-  /* Letter is hidden INSIDE the envelope */
   transform: translateY(0);
 
-  transition: transform 1s ease;
+  transition:
+    transform 1s ease,
+    z-index 0s linear 1s;
 
   overflow-y: auto;
 
-  z-index: 8;
+  /* Behind the flaps when closed */
+  z-index: 2;
 
   border: 2px solid #f3d3df;
 
   box-shadow:
     inset 0 0 20px rgba(235, 150, 180, 0.08);
 }
-
-
 
     /* Letter scrollbar */
 
@@ -524,6 +520,8 @@
 
 .envelope-wrapper.flap .letter {
   transform: translateY(-85%);
+
+  /* Bring letter in front AFTER it moves */
   z-index: 8;
 }
 
